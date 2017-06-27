@@ -8,7 +8,7 @@ const int PER = 3000000;
 const char FILLED[7] = {'a', 'b', 'c', 'd', 'e', 'f', 'g'};
 const char EMPTY = ' ';
 static char screen[22][80];
-char answer[3];
+char answer[3] = {'0', '0', '0'};
 int save_i, save_j;
 int version, result;
 int figure, key, r;
@@ -763,20 +763,19 @@ unsigned char cur_button() {
 /*
  * переводит итоговый результат в массив символов - OK
  */
-int create_answer() {
+void create_answer() {
     if (result == 0) {
-        answer[0] = '0';
-        return 1;
+        return;
     }
     int digit;
-    int pointer = 0;
+    int pointer = 2;
     while (result != 0) {
         digit = result % 10;
         answer[pointer] = digits[digit];
-        ++pointer;
+        --pointer;
         result /= 10;
     }
-    return pointer;
+    return;
 }
 
 /*
@@ -785,8 +784,8 @@ int create_answer() {
 void game_over() {
 	/*
 	* GAME OVER!
-	* score: result
-	* restart: w
+	* SCORE: result
+	* RESTART: w
 	*/
 	start_screen();
 	char buffer1[10] = {'G', 'A', 'M', 'E', ' ', 'O', 'V', 'E', 'R', '!'};
@@ -797,8 +796,8 @@ void game_over() {
 	for (int j = 1; j < 8; ++j) {
 		screen[10][j] = buffer2[j - 1];
 	}
-	int length = create_answer();
-	for (int j = 0; j < length; ++j) {
+	create_answer();
+	for (int j = 0; j < 3; ++j) {
 		screen[10][8 + j] = answer[j];
 	}
 	char buffer3[10] = {'R', 'E', 'S', 'T', 'A', 'R', 'T', ':', ' ', 'w'};

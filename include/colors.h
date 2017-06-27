@@ -15,9 +15,10 @@
 #define COLOR4 0x40
 #define COLOR5 0x50
 #define COLOR6 0x60
-#define COLOR7 0x70
+#define COLOR7 0x80
+#define COLOR8 0x70
 
-static color_t color_mas[]={COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7};
+static color_t color_mas[]={COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7, COLOR8};
 //static color_t color_mas[]={GREEN,BLUE,PINK,ORANGE,RED};
 
 #endif //NIDEDFUNC_COLORS_H

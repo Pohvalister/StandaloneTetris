@@ -24,7 +24,7 @@ void print_colored_symbols(char color_table[15][80],size_t row_count,size_t col_
     for (size_t i=0;i<row_count;i++){
         for (size_t j=0;j<col_count;j++){
             size_t value = color_table[i][j];
-            if ((value - '0') < 7){
+            if ((value - '0') < 8){
                 PUT_ON_SCREEN(' ',i,j,color_mas[value - '0']);
             }else{
                 PUT_ON_SCREEN((char)value,i,j,DEFAULT_COLOR);

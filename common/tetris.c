@@ -7,7 +7,7 @@
 const int PER = 3000000;
 const char FILLED[7] = {'0', '1', '2', '3', '4', '5', '6'};
 const char EMPTY = ' ';
-static char screen[22][12];
+static char screen[22][80];
 char answer[3];
 int save_i, save_j;
 int version, result;
@@ -23,18 +23,12 @@ const char digits[10] = {
 /*
  * выводит состояние screen на данный момент - ОК
  */
-static char print_table[22][80];
 void full_print(int mode) {
-    clear_screen();
-    for (int i=0;i<22;i++){
-        for (int j=0;j<12;j++){
-            print_table[i][j]=(char)(screen[i][j]);
-        }
-    }
+	clear_screen();
 	if (mode == 0) {
-		print_colored_symbols(print_table, (size_t)22, (size_t)12);
+		print_colored_symbols(screen, (size_t)22, (size_t)12);
 	} else {
-		print_monotonic_table(print_table, (size_t)22, (size_t)12, WHITE);
+		print_monotonic_table(screen, (size_t)22, (size_t)12, WHITE);
 	}
 
 }
@@ -44,22 +38,23 @@ void full_print(int mode) {
  * задает начальное состояние screen - OK
  */
 void start_screen() {
+	const char color = '7';
     for (int j = 1; j < 11; ++j) {
-        screen[0][j] = (char)'-';
+        screen[0][j] = color;
     }
     for (int j = 1; j < 11; ++j) {
-        screen[21][j] = (char)'-';
+        screen[21][j] = color;
     }
     for (int i = 1; i < 21; ++i) {
-        screen[i][0] = (char)'|';
+        screen[i][0] = color;
     }
     for (int i = 1; i < 21; ++i) {
-        screen[i][11] = (char)'|';
+        screen[i][11] = color;
     }
-    screen[0][0] = (char)'+';
-    screen[21][0] = (char)'+';
-    screen[0][11] = (char)'+';
-    screen[21][11] = (char)'+';
+    screen[0][0] = color;
+    screen[21][0] = color;
+    screen[0][11] = color;
+    screen[21][11] = color;
     for (int i = 1; i < 21; ++i) {
         for (int j = 1; j < 11; ++j) {
             screen[i][j] = EMPTY;
@@ -826,6 +821,7 @@ void play_tetris(){
         int fail = 0;
         while (1) {
             figure = r % 7;
+			++r;
             version = 0;
             switch (figure) {
                 case 0:
@@ -889,7 +885,7 @@ void play_tetris(){
                 for (int i = 0; i < PER; ++i) {
                     ++r;
                 }
-		r %= 7;
+				r %= 7;
                 break;
             }
             while (1) {

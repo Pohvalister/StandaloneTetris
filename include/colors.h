@@ -7,7 +7,7 @@
 #define GREEN 0x2
 #define PINK 0x5
 #define ORANGE 0x6
-#define WHITE 0x7//???
+#define WHITE 0x7s
 #define RED 0x9
 #define COLOR1 0x10
 #define COLOR2 0x20

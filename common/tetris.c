@@ -12,6 +12,7 @@ char answer[3];
 int save_i, save_j;
 int version, result;
 int figure, key, r;
+int cur_per;
 int new_operation = 1;
 const int ver[7] = {1, 4, 4, 2, 2, 2, 4};
 const char digits[10] = {
@@ -752,6 +753,7 @@ void check_level() {
         }
     }
     result += dif;
+    cur_per -= dif * 1000;
 }
 
 /*
@@ -818,6 +820,8 @@ void game_over() {
 void play_tetris(){
     while (1) {
         start_screen();
+        cur_per = PER;
+        result = 0;
         int fail = 0;
         while (1) {
             figure = r % 7;
@@ -882,14 +886,14 @@ void play_tetris(){
             }
             full_print(0);
             if (fail) {
-                for (int i = 0; i < PER; ++i) {
+                for (int i = 0; i < cur_per; ++i) {
                     ++r;
                 }
 				r %= 7;
                 break;
             }
             while (1) {
-                for (int i = 0; i < PER; ++i) {
+                for (int i = 0; i < cur_per; ++i) {
                     key = cur_button();
                     if (key != 0x11 && key != 0x1f && key != 0x20 && key != 0x1e) {
                         new_operation = 1;

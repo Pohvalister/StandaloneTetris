@@ -24,8 +24,8 @@ void print_colored_symbols(char color_table[15][80],size_t row_count,size_t col_
     for (size_t i=0;i<row_count;i++){
         for (size_t j=0;j<col_count;j++){
             size_t value = color_table[i][j];
-            if ((value - '0') < 8){
-                PUT_ON_SCREEN(' ',i,j,color_mas[value - '0']);
+            if ((value - 'a') < 8){
+                PUT_ON_SCREEN(' ',i,j,color_mas[value - 'a']);
             }else{
                 PUT_ON_SCREEN((char)value,i,j,DEFAULT_COLOR);
             }
@@ -35,7 +35,16 @@ void print_colored_symbols(char color_table[15][80],size_t row_count,size_t col_
 void print_monotonic_table(char table[15][80],size_t row_count,size_t col_count,color_t COLOR){
     for (size_t i=0;i<row_count;i++){
         for (size_t j=0;j<col_count;j++){
-            PUT_ON_SCREEN((char)table[i][j],i,j,COLOR);
+			/*if (i == 0 || i == (row_count - 1) || j == 0 || j == (col_count - 1)) {
+				size_t value = table[i][j];
+            	if ((value - '0') < 8){
+                	PUT_ON_SCREEN(' ',i,j,color_mas[value - '0']);
+            	} else {
+                	PUT_ON_SCREEN((char)value,i,j,DEFAULT_COLOR);
+            	}
+			} else {*/
+				PUT_ON_SCREEN((char)table[i][j],i,j,COLOR);
+			//}
         }
     }
 }

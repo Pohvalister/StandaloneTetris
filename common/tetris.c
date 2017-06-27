@@ -5,7 +5,7 @@
 #include "types.h"
 
 const int PER = 3000000;
-const char FILLED[7] = {'0', '1', '2', '3', '4', '5', '6'};
+const char FILLED[7] = {'a', 'b', 'c', 'd', 'e', 'f', 'g'};
 const char EMPTY = ' ';
 static char screen[22][80];
 char answer[3];
@@ -25,12 +25,7 @@ const char digits[10] = {
  */
 void full_print(int mode) {
 	clear_screen();
-	if (mode == 0) {
-		print_colored_symbols(screen, (size_t)22, (size_t)12);
-	} else {
-		print_monotonic_table(screen, (size_t)22, (size_t)12, WHITE);
-	}
-
+	print_colored_symbols(screen, (size_t)22, (size_t)12);
 }
 
 
@@ -38,7 +33,7 @@ void full_print(int mode) {
  * задает начальное состояние screen - OK
  */
 void start_screen() {
-	const char color = '7';
+	const char color = 'h';
     for (int j = 1; j < 11; ++j) {
         screen[0][j] = color;
     }
@@ -796,7 +791,7 @@ void game_over() {
 	for (int j = 1; j < 11; ++j) {
 		screen[8][j] = buffer1[j - 1];
 	}
-	char buffer2[7] = {'s', 'c', 'o', 'r', 'e', ':', ' '};
+	char buffer2[7] = {'S', 'C', 'O', 'R', 'E', ':', ' '};
 	for (int j = 1; j < 8; ++j) {
 		screen[10][j] = buffer2[j - 1];
 	}
@@ -804,7 +799,7 @@ void game_over() {
 	for (int j = 0; j < length; ++j) {
 		screen[10][8 + j] = answer[j];
 	}
-	char buffer3[10] = {'r', 'e', 's', 't', 'a', 'r', 't', ':', ' ', 'w'};
+	char buffer3[10] = {'R', 'E', 'S', 'T', 'A', 'R', 'T', ':', ' ', 'w'};
 	for (int j = 1; j < 11; ++j) {
 		screen[12][j] = buffer3[j - 1];
 	}

@@ -826,7 +826,6 @@ void play_tetris(){
         int fail = 0;
         while (1) {
             figure = r % 7;
-            ++r;
             version = 0;
             switch (figure) {
                 case 0:
@@ -887,10 +886,10 @@ void play_tetris(){
             }
             full_print(0);
             if (fail) {
-                int unused = 0;
                 for (int i = 0; i < PER; ++i) {
-                    ++unused;
+                    ++r;
                 }
+		r %= 7;
                 break;
             }
             while (1) {

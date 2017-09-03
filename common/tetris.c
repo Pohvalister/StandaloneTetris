@@ -1,7 +1,6 @@
 #include "tetris.h"
 #include "print_table.h"
 #include "colors.h"
-#include "tetris.h"
 #include "types.h"
 
 const int PER = 3000000;
@@ -24,7 +23,7 @@ const char digits[10] = {
 /*
  * выводит состояние screen на данный момент - ОК
  */
-void full_print(int mode) {
+void full_print() {
 	clear_screen();
 	print_colored_symbols(screen, (size_t)22, (size_t)12);
 }
@@ -804,7 +803,7 @@ void game_over() {
 	for (int j = 1; j < 11; ++j) {
 		screen[12][j] = buffer3[j - 1];
 	}
-	full_print(1);
+	full_print();
 }
 
 
@@ -878,7 +877,7 @@ void play_tetris(){
                     save_i = 2;
                     save_j = 5;
             }
-            full_print(0);
+            full_print();
             if (fail) {
                 for (int i = 0; i < cur_per; ++i) {
                     ++r;
@@ -905,12 +904,12 @@ void play_tetris(){
                             r += i;
                             r %= 7;
                             new_operation = 0;
-                            full_print(0);
+                            full_print();
                         }
                     }
                 }
                 if (next_state()) {
-                    full_print(0);
+                    full_print();
                 } else {
                     check_level();
                     break;

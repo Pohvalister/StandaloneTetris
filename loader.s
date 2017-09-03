@@ -21,7 +21,13 @@ loader:
 	movl $(stack + STACKSIZE), %esp 			#set up the stack
 	movl %eax, magic 							#Mulitboot magic number
 	movl %ebx, mbd 								#Multiboot data structure
-	call main 									#call C code -функцию main
+	
+	cli
+	call init_gdt
+	call init_idt
+	sti
+
+	call main 									#call C code -функцию main	
 	cli 										# отключить прерывания от оборудования
 hang:
 	hlt 										#halt machine should kernel return - остановить процессор пока не возникнет прерывание

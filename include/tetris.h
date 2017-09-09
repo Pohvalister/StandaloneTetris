@@ -1,6 +1,7 @@
-#ifndef _TETR_H
-#define _TETR_H
+#ifndef TETRIS_H
+#define TETRIS_H
 
 void play_tetris();
+void tetris_on_key_pressed(unsigned char);
 
-#endif
+#endif //TETRIS_H

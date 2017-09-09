@@ -1,5 +1,9 @@
 #include "tetris.h"
+#include "sleep.h"
 
 void main(void){
-  play_tetris();
+    while(1) {
+        play_tetris();
+        sleep_until_awakaned();
+    }
 }

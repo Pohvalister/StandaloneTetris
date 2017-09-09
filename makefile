@@ -6,6 +6,14 @@ OBJFILES = \
 	loader.o  \
 	common/print_table.o \
 	common/tetris.o \
+	common/os_life.o \
+	common/handler.o \
+	common/io_commands.o \
+	common/handler_asm.o \
+	common/pic.o \
+	common/sleep.o \
+	common/gdt.o \
+	common/idt.o \
 	kernel.o 
 
 image:
